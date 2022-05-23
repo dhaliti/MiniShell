@@ -6,16 +6,25 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/05/22 23:48:02 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/23 21:01:54 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-static void	ft_init(t_minishell **shell)
+static void	ft_init(t_minishell **shell, char **envp)
 {
+	int	i;
+
+	i = 0;
 	*shell = (t_minishell *)malloc(sizeof(t_minishell));
-	(*shell)->env = g_env;
+	while (envp[i])
+		i++;
+	(*shell)->env = (char **)malloc(sizeof(char *) * (i + 1));
+	i = -1;
+	while (envp[++i])
+		(*shell)->env[i] = ft_strdup(envp[i]);
+	(*shell)->env[i] = NULL;
 	(*shell)->path = NULL;
 	(*shell)->flags = NULL;
 	(*shell)->input = NULL;
@@ -26,6 +35,14 @@ static void	ft_init(t_minishell **shell)
 	(*shell)->status = 0;
 }
 
+static void	ft_free_shell2(t_minishell *shell)
+{
+	shell->fd_in = 0;
+	shell->fd_out = 0;
+	shell->quote_pipe = 0;
+	shell->status = 0;
+}
+
 void	ft_free_shell(t_minishell *shell)
 {
 	int	i;
@@ -34,41 +51,23 @@ void	ft_free_shell(t_minishell *shell)
 	i = -1;
 	if (shell->path)
 	{
-		while (shell->path[++i])
+		while (shell->path && shell->path[++i])
 			free (shell->path[i]);
 		free(shell->path);
+		shell->path = NULL;
 	}
 	if (shell->input)
 	{
 		j = -1;
-		while (shell->input[++j] != NULL)
+		while (shell->input && shell->input[++j])
 			free(shell->input[j]);
 		free(shell->input);
+		shell->input = NULL;
 	}
-	if (shell->input2)
-		free(shell->input2);
 	j = 2;
 	while (++j < 100)
 		close(j);
-	free(shell);
-}
-
-static char	**ft_env(char **envp)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (envp[++i])
-		i++;
-	g_env = (char **)malloc(sizeof(char **) * (i + 1));
-	g_env[0] = ft_strdup("0");
-	i = 0;
-	j = -1;
-	while (envp[++j])
-		g_env[++i] = ft_strdup(envp[j]);
-	g_env[i] = 0;
-	return (g_env);
+	ft_free_shell2(shell);
 }
 
 void	ft_prompt(char **envp)
@@ -78,11 +77,10 @@ void	ft_prompt(char **envp)
 
 	signal(SIGKILL, sigint_handler);
 	signal(SIGINT, sigint_handler);
-	g_env = ft_env(envp);
+	ft_init(&shell, envp);
 	buf = readline("\033[0;36mMinishell $> \e[0m");
 	while (buf != NULL)
 	{
-		ft_init(&shell);
 		if (*buf)
 			add_history(buf);
 		ft_parse(buf, shell);
@@ -97,7 +95,6 @@ int	main(int argc, char **argv, char **envp)
 	printf("main\n");
 	(void) argc;
 	(void) argv;
-	st = 0;
-	//g_env = ft_env(envp);
+	g_st = 0;
 	ft_prompt(envp);
 }

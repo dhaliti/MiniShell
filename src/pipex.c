@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 09:51:17 by jperras           #+#    #+#             */
-/*   Updated: 2022/05/19 18:45:29 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/23 20:18:24 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	**ft_path(char **env)
 	return (mypath);
 }
 
-static char	*ft_cmd(char *cmd)
+static char	*ft_cmd(char *cmd, t_minishell *shell)
 {
 	char	**mypath;
 	char	*cmd2;
@@ -67,7 +67,7 @@ static char	*ft_cmd(char *cmd)
 	if (cmd[0] == '/')
 		return (ft_strdup(cmd));
 	i = 0;
-	mypath = ft_path(g_env);
+	mypath = ft_path(shell->env);
 	while (mypath && mypath[i])
 	{
 		cmd2 = ft_strjoin(mypath[i], cmd);
@@ -81,8 +81,9 @@ static char	*ft_cmd(char *cmd)
 	}
 	ft_free_mypath(mypath);
 	printf("%s: Command not found\n", cmd);
-	free(g_env[0]);
-	g_env[0] = ft_strdup(ft_itoa(127));
+	// free(g_env[0]);
+	// g_env[0] = ft_strdup(ft_itoa(127));
+	g_st = 127;
 	return (NULL);
 }
 
@@ -108,7 +109,7 @@ static char	*ft_choose(t_minishell *shell)
 	else if (ft_strcmp(shell->input2[i], "unset"))
 		ft_buildin_unset(shell);
 	else
-		return (ft_cmd(shell->input2[i]));
+		return (ft_cmd(shell->input2[i], shell));
 	return (NULL);
 }
 /*********************************** PIPEX ************************************/

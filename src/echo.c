@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:05:34 by jperras           #+#    #+#             */
-/*   Updated: 2022/05/22 23:38:05 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/23 20:35:43 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ static void	ft_redirect_echo(char **input, t_minishell *shell,
 		if (shell->fd_out < 0)
 		{
 			printf("%s: No such file or directory\n", input[1]);
-			free(g_env[0]);
-			g_env[0] = ft_strdup(ft_itoa(1));
 			exit (1) ;
 		}
 		ft_print_echo(args, shell->fd_out, flag);
@@ -55,7 +53,7 @@ static void	ft_redirect_echo(char **input, t_minishell *shell,
 		if (shell->fd_out < 0)
 		{
 			printf("%s: No such file or directory\n", input[1]);
-			g_env[0] = ft_strdup(ft_itoa(1));
+			//g_env[0] = ft_strdup(ft_itoa(1));
 			exit (1);
 		}
 		ft_print_echo(args, shell->fd_out, flag);
@@ -96,9 +94,7 @@ void	ft_buildin_echo(char *buf, t_minishell *shell)
 		ft_redirect_echo(input + i, shell, flag, args);
 	else
 		ft_print_echo(args, STDOUT_FILENO, flag);
-	// free(g_env[0]);
-	// g_env[0] = ft_strdup(ft_itoa(0));
-	st = 0;
+	g_st = 0;
 }
 
 void	ft_buildin_echo2(char **input, t_minishell *shell)

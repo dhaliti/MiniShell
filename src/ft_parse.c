@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:20:45 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/05/23 13:50:44 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/23 20:56:46 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,7 @@ static int	ft_status(char *buf)
 		i++;
 	if (buf[i] == '$' && buf[i + 1] == '?')
 	{
-		// printf("%s\n", g_env[0]);
-		// free(g_env[0]);
-		// g_env[0] = ft_strdup(ft_itoa(0));
-		printf("%d\n", st);
-		st = 0;
+		g_st = 0;
 		return (1);
 	}
 	return (0);

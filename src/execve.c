@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:31:25 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/05/23 13:45:06 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/23 20:19:26 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_parent_process(t_minishell *shell)
 	//free(g_env[0]);
 //	g_env[0] = ft_strdup(ft_itoa(shell->status));
 //	printf("shell_status: %d\n", shell->status);
-	st = shell->status;
+	g_st = shell->status;
 }
 
 /*********************************** EXECVE ***********************************/
@@ -52,7 +52,7 @@ void	ft_exceve(char **input, t_minishell *shell, char *cmd)
 	else
 	{
 		ft_flags(input, shell);
-		if (execve(cmd, shell->flags, g_env) == -1)
+		if (execve(cmd, shell->flags, shell->env) == -1)
 			printf("%s: No such file or directory\n", cmd);
 	}
 }

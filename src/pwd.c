@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:34:45 by jperras           #+#    #+#             */
-/*   Updated: 2022/05/23 13:48:53 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/23 20:14:51 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_buildin_pwd(t_minishell *shell)
 	if (getcwd(tmp, sizeof(tmp)) == NULL)
 	{
 		printf("Pwd error");
-		st = 1;
+		g_st = 1;
 		return ;
 	}
 	if (shell->input2[1])
@@ -61,5 +61,5 @@ void	ft_buildin_pwd(t_minishell *shell)
 	}
 	else
 		printf("%s\n", tmp);
-	st = 0;
+	g_st = 0;
 }

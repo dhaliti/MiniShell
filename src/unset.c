@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 16:17:14 by jperras           #+#    #+#             */
-/*   Updated: 2022/05/23 13:37:39 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/23 20:16:21 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,24 @@ void	ft_buildin_unset(t_minishell *shell)
 		printf("unset: not enough arguments\n");
 		return;
 	}
-	while (g_env[i] && ft_strcmp2(g_env[i], shell->input2[1]) != 0)
+	while (shell->env[i] && ft_strcmp2(shell->env[i], shell->input2[1]) != 0)
 		i++;
 	i--;
-	if (!g_env[i])
+	if (!shell->env[i])
 	{
 		printf("unset: %s\nInvalid parameter name\n", shell->input2[1]);
-		free(g_env[0]);
-		g_env[0] = ft_strdup(ft_itoa(1));
+		// free(g_env[0]);
+		// g_env[0] = ft_strdup(ft_itoa(1));
+		g_st = 1;
 	}
 	else
 	{
 		i++;
-		while (g_env[i])
+		while (shell->env[i])
 		{
-			(g_env)[i] = (g_env)[i + 1];
+			shell->env[i] = shell->env[i + 1];
 			i++;
 		}
-		st = 0;
+		g_st = 0;
 	}
 }
