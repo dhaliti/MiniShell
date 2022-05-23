@@ -1,0 +1,138 @@
+==20106== Memcheck, a memory error detector
+==20106== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==20106== Using Valgrind-3.19.0.GIT-lbmacos-da51a738a7-20211224 and LibVEX; rerun with -h for copyright info
+==20106== Command: ./minishell
+==20106== Parent PID: 20099
+==20106== 
+--20106-- 
+--20106-- Valgrind options:
+--20106--    --leak-check=full
+--20106--    --show-leak-kinds=all
+--20106--    --track-origins=yes
+--20106--    --verbose
+--20106--    --log-file=valgrind-out.txt
+--20106-- Output from sysctl({CTL_KERN,KERN_VERSION}):
+--20106--   Darwin Kernel Version 19.6.0: Tue Feb 15 21:39:11 PST 2022; root:xnu-6153.141.59~1/RELEASE_X86_64
+--20106-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3-ssse3-avx-f16c-rdrand
+--20106-- Page sizes: currently 4096, max supported 4096
+--20106-- Valgrind library directory: /usr/local/Cellar/valgrind/HEAD-da51a73/libexec/valgrind
+--20106-- ./minishell (rx at 0x100000000, rw at 0x100005000)
+--20106--    reading syms   from primary file (45 35)
+--20106--    dSYM= ./minishell.dSYM/Contents/Resources/DWARF/minishell
+--20106-- /usr/lib/dyld (rx at 0x100009000, rw at 0x10009c000)
+--20106--    reading syms   from primary file (5 2729)
+--20106-- Scheduler: using generic scheduler lock implementation.
+--20106-- Reading suppressions file: /usr/local/Cellar/valgrind/HEAD-da51a73/libexec/valgrind/default.supp
+==20106== embedded gdbserver: reading from /var/folders/jf/j7h_h7ts3dv_kjjdkw90jwlr0000gn/T//vgdb-pipe-from-vgdb-to-20106-by-john-on-???
+==20106== embedded gdbserver: writing to   /var/folders/jf/j7h_h7ts3dv_kjjdkw90jwlr0000gn/T//vgdb-pipe-to-vgdb-from-20106-by-john-on-???
+==20106== embedded gdbserver: shared mem   /var/folders/jf/j7h_h7ts3dv_kjjdkw90jwlr0000gn/T//vgdb-pipe-shared-mem-vgdb-20106-by-john-on-???
+==20106== 
+==20106== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==20106== don't want to do, unless you know exactly what you're doing,
+==20106== or are doing some strange experiment):
+==20106==   /usr/local/Cellar/valgrind/HEAD-da51a73/libexec/valgrind/../../bin/vgdb --pid=20106 ...command...
+==20106== 
+==20106== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==20106==   /path/to/gdb ./minishell
+==20106== and then give GDB the following command
+==20106==   target remote | /usr/local/Cellar/valgrind/HEAD-da51a73/libexec/valgrind/../../bin/vgdb --pid=20106
+==20106== --pid is optional if only one valgrind process is running
+==20106== 
+--20106-- REDIR: 0x10005b340 (dyld:strcmp) redirected to 0x258059640 (???)
+--20106-- REDIR: 0x100055614 (dyld:arc4random) redirected to 0x2580596de (???)
+--20106-- REDIR: 0x10005a720 (dyld:strlen) redirected to 0x25805960f (???)
+--20106-- REDIR: 0x10005b640 (dyld:strcpy) redirected to 0x25805965c (???)
+--20106-- REDIR: 0x1000587ba (dyld:strcat) redirected to 0x258059620 (???)
+--20106-- REDIR: 0x10005a51a (dyld:strlcat) redirected to 0x258059679 (???)
+--20106-- /usr/local/Cellar/valgrind/HEAD-da51a73/libexec/valgrind/vgpreload_core-amd64-darwin.so (rx at 0x10010f000, rw at 0x100113000)
+--20106--    reading syms   from primary file (3 48)
+--20106--    dSYM= /usr/local/Cellar/valgrind/HEAD-da51a73/libexec/valgrind/vgpreload_core-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_core-amd64-darwin.so
+--20106-- /usr/local/Cellar/valgrind/HEAD-da51a73/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so (rx at 0x100115000, rw at 0x10011c000)
+--20106--    reading syms   from primary file (75 57)
+--20106--    dSYM= /usr/local/Cellar/valgrind/HEAD-da51a73/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so.dSYM/Contents/Resources/DWARF/vgpreload_memcheck-amd64-darwin.so
+--20106-- /usr/local/Cellar/readline/8.1.2/lib/libreadline.8.1.dylib (rx at 0x100121000, rw at 0x100149000)
+--20106--    reading syms   from primary file (717 337)
+--20106-- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/lib/darwin/libclang_rt.asan_osx_dynamic.dylib (rx at 0x100165000, rw at 0x1001ee000)
+--20106--    reading syms   from primary file (287 1949)
+--20106-- /usr/lib/libSystem.B.dylib (rx at 0x100e27000, rw at 0x100e29000)
+--20106--    reading syms   from primary file (29 8)
+--20106-- /usr/lib/libncurses.5.4.dylib (rx at 0x100e31000, rw at 0x100e61000)
+--20106--    reading syms   from primary file (613 1)
+--20106-- /usr/lib/system/libcache.dylib (rx at 0x100e75000, rw at 0x100e7b000)
+--20106--    reading syms   from primary file (32 29)
+--20106-- /usr/lib/system/libcommonCrypto.dylib (rx at 0x100e82000, rw at 0x100e8e000)
+--20106--    reading syms   from primary file (241 173)
+--20106-- /usr/lib/system/libcompiler_rt.dylib (rx at 0x100e9e000, rw at 0x100ea6000)
+--20106--    reading syms   from primary file (505 8)
+--20106-- /usr/lib/system/libcopyfile.dylib (rx at 0x100eb6000, rw at 0x100ec0000)
+--20106--    reading syms   from primary file (11 38)
+--20106-- /usr/lib/system/libcorecrypto.dylib (rx at 0x100ec8000, rw at 0x100f5b000)
+--20106--    reading syms   from primary file (586 845)
+--20106-- /usr/lib/system/libdispatch.dylib (rx at 0x100f7b000, rw at 0x100fbc000)
+--20106--    reading syms   from primary file (328 1607)
+--20106-- /usr/lib/system/libdyld.dylib (rx at 0x100ff9000, rw at 0x101030000)
+--20106--    reading syms   from primary file (119 1467)
+--20106-- /usr/lib/system/libkeymgr.dylib (rx at 0x101059000, rw at 0x10105a000)
+--20106--    reading syms   from primary file (11 2)
+--20106-- /usr/lib/system/libmacho.dylib (rx at 0x101069000, rw at 0x10106f000)
+--20106--    reading syms   from primary file (105 2)
+--20106-- /usr/lib/system/libquarantine.dylib (rx at 0x101077000, rw at 0x10107a000)
+--20106--    reading syms   from primary file (91 12)
+--20106-- /usr/lib/system/libremovefile.dylib (rx at 0x101082000, rw at 0x101084000)
+--20106--    reading syms   from primary file (12 8)
+--20106-- /usr/lib/system/libsystem_asl.dylib (rx at 0x10108b000, rw at 0x1010a3000)
+--20106--    reading syms   from primary file (219 234)
+--20106-- /usr/lib/system/libsystem_blocks.dylib (rx at 0x1010b3000, rw at 0x1010b4000)
+--20106--    reading syms   from primary file (21 8)
+--20106-- /usr/lib/system/libsystem_c.dylib (rx at 0x1010bb000, rw at 0x101143000)
+--20106--    reading syms   from primary file (1346 892)
+--20106-- /usr/lib/system/libsystem_configuration.dylib (rx at 0x101173000, rw at 0x101177000)
+--20106--    reading syms   from primary file (36 68)
+--20106-- /usr/lib/system/libsystem_coreservices.dylib (rx at 0x101180000, rw at 0x101184000)
+--20106--    reading syms   from primary file (14 47)
+--20106-- /usr/lib/system/libsystem_darwin.dylib (rx at 0x10118c000, rw at 0x101195000)
+--20106--    reading syms   from primary file (63 562)
+--20106-- /usr/lib/system/libsystem_dnssd.dylib (rx at 0x1011a4000, rw at 0x1011ac000)
+--20106--    reading syms   from primary file (40 26)
+--20106-- /usr/lib/system/libsystem_featureflags.dylib (rx at 0x1011b4000, rw at 0x1011b6000)
+--20106--    reading syms   from primary file (1 12)
+--20106-- /usr/lib/system/libsystem_info.dylib (rx at 0x1011bd000, rw at 0x10120b000)
+--20106--    reading syms   from primary file (427 714)
+--20106-- /usr/lib/system/libsystem_m.dylib (rx at 0x101223000, rw at 0x10126f000)
+--20106--    reading syms   from primary file (811 1)
+--20106-- /usr/lib/system/libsystem_malloc.dylib (rx at 0x101280000, rw at 0x1012a8000)
+--20106--    reading syms   from primary file (98 470)
+--20106-- /usr/lib/system/libsystem_networkextension.dylib (rx at 0x1012b8000, rw at 0x1012c6000)
+--20106--    reading syms   from primary file (118 242)
+--20106-- /usr/lib/system/libsystem_notify.dylib (rx at 0x1012d6000, rw at 0x1012e0000)
+--20106--    reading syms   from primary file (23 1)
+--20106-- /usr/lib/system/libsystem_sandbox.dylib (rx at 0x1012e8000, rw at 0x1012ed000)
+--20106--    reading syms   from primary file (112 23)
+--20106-- /usr/lib/system/libsystem_secinit.dylib (rx at 0x1012f6000, rw at 0x1012f9000)
+--20106--    reading syms   from primary file (5 20)
+--20106-- /usr/lib/system/libsystem_kernel.dylib (rx at 0x101300000, rw at 0x10132d000)
+--20106--    reading syms   from primary file (1362 230)
+--20106-- /usr/lib/system/libsystem_platform.dylib (rx at 0x10134c000, rw at 0x101355000)
+--20106--    reading syms   from primary file (168 103)
+--20106-- /usr/lib/system/libsystem_pthread.dylib (rx at 0x10135f000, rw at 0x10136a000)
+--20106--    reading syms   from primary file (189 143)
+--20106-- /usr/lib/system/libsystem_symptoms.dylib (rx at 0x101377000, rw at 0x10137f000)
+--20106--    reading syms   from primary file (10 86)
+--20106-- /usr/lib/system/libsystem_trace.dylib (rx at 0x101387000, rw at 0x10139e000)
+--20106--    reading syms   from primary file (131 274)
+--20106-- /usr/lib/system/libunwind.dylib (rx at 0x1013af000, rw at 0x1013b5000)
+--20106--    reading syms   from primary file (102 52)
+--20106-- /usr/lib/system/libxpc.dylib (rx at 0x1013be000, rw at 0x1013f4000)
+--20106--    reading syms   from primary file (627 1467)
+--20106-- /usr/lib/libobjc.A.dylib (rx at 0x101422000, rw at 0x101455000)
+--20106--    reading syms   from primary file (382 771)
+--20106-- /usr/lib/libc++abi.dylib (rx at 0x101479000, rw at 0x10148f000)
+--20106--    reading syms   from primary file (366 704)
+--20106-- /usr/lib/libc++.1.dylib (rx at 0x1014ad000, rw at 0x101500000)
+--20106--    reading syms   from primary file (2088 1160)
+--20106-- REDIR: 0x10134d3a0 (libsystem_platform.dylib:_platform_memcmp) redirected to 0x1001188fb (_platform_memcmp)
+--20106-- REDIR: 0x10134f7e0 (libsystem_platform.dylib:_platform_memmove$VARIANT$Ivybridge) redirected to 0x100118e79 (_platform_memmove$VARIANT$Ivybridge)
+--20106-- REDIR: 0x10134c800 (libsystem_platform.dylib:_platform_strcmp) redirected to 0x10011830f (_platform_strcmp)
+--20106-- UNKNOWN task message [id 3453, to mach_task_self(), reply 0x707]
+--20106-- REDIR: 0x10128b216 (libsystem_malloc.dylib:malloc_zone_register) redirected to 0x10011798e (malloc_zone_register)
+==20106== Warning: set address range perms: large range [0xffffffff000, 0x120000000000) (defined)
