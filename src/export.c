@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 14:17:20 by jperras           #+#    #+#             */
-/*   Updated: 2022/05/23 20:25:30 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/24 18:39:05 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_strcmp3(char *s1, char *s2)
 	j = 0;
 	while (s1[j] && s1[j] != '=')
 		j++;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0' && i < j - 1)
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0' && i < j)
 		i++;
 	return (s1[i] - s2[i]);
 }
@@ -87,7 +87,7 @@ void	ft_buildin_export(t_minishell *shell)
 	int		flag;
 
 	if (export_env(shell))
-		return;
+		return ;
 	if (!(ft_strchr(shell->input2[1], '=')))
 	{
 		printf("export: %s not valid in this context\n", shell->input2[1]);

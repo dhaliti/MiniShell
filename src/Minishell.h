@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:30:28 by jperras           #+#    #+#             */
-/*   Updated: 2022/05/23 19:57:12 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/24 18:31:25 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <term.h>
 # include <signal.h>
 
-int g_st;
+int	g_st;
 
 typedef struct s_minishell
 {

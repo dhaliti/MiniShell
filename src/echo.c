@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:05:34 by jperras           #+#    #+#             */
-/*   Updated: 2022/05/24 10:23:27 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/24 19:07:51 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_print_echo(char **args, int fd, int flag)
 	if (ft_strcmp(args[0], "$?"))
 	{
 		printf("%d\n", g_st);
-		return;
+		return ;
 	}
 	while (args && args[++i])
 	{
@@ -31,7 +31,8 @@ static void	ft_print_echo(char **args, int fd, int flag)
 			if (args[i][j] != '\"' && args[i][j] != '\'')
 				ft_putchar_fd(args[i][j], fd);
 		}
-		ft_putchar_fd(' ', fd);
+		if (args && args[i + 1])
+			ft_putchar_fd(' ', fd);
 	}
 	if (!flag)
 		ft_putchar_fd('\n', fd);
@@ -47,7 +48,7 @@ static void	ft_redirect_echo(char **input, t_minishell *shell,
 		if (shell->fd_out < 0)
 		{
 			printf("%s: No such file or directory\n", input[1]);
-			exit (1) ;
+			exit(1);
 		}
 		ft_print_echo(args, shell->fd_out, flag);
 	}
@@ -58,8 +59,7 @@ static void	ft_redirect_echo(char **input, t_minishell *shell,
 		if (shell->fd_out < 0)
 		{
 			printf("%s: No such file or directory\n", input[1]);
-			//g_env[0] = ft_strdup(ft_itoa(1));
-			exit (1);
+			exit(1);
 		}
 		ft_print_echo(args, shell->fd_out, flag);
 	}

@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 10:25:49 by jperras           #+#    #+#             */
-/*   Updated: 2022/05/24 10:17:42 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/24 18:32:04 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	sigint_handler(int sign_num)
 		rl_redisplay();
 		g_st = 130;
 	}
-
 	if (sign_num == SIGQUIT)
 	{
 		write(STDERR_FILENO, "\n", 1);

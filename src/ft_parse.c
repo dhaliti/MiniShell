@@ -6,7 +6,7 @@
 /*   By: dhaliti <dhaliti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:20:45 by dhaliti           #+#    #+#             */
-/*   Updated: 2022/05/24 10:10:08 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/24 18:28:26 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,10 @@ void	ft_parse(char *buf, t_minishell *shell)
 	buf2 = ft_dollar(buf, shell->env);
 	shell->quote_pipe = ft_quote_pipe(buf2);
 	shell->fd_in = 0;
-	if (ft_strncmp(buf2, "echo", 4) == 0  && shell->quote_pipe)
+	if (ft_strncmp(buf2, "echo", 4) == 0 && shell->quote_pipe)
 	{
 		ft_buildin_echo(buf2, shell);
-		return;
+		return ;
 	}
 	else
 		pipex(buf2, shell);

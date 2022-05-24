@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/05/24 10:17:03 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/24 18:13:52 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,19 @@ static void	ft_init(t_minishell **shell, char **envp)
 
 static void	ft_free_shell2(t_minishell *shell)
 {
+	int	i;
+
 	shell->fd_in = 0;
 	shell->fd_out = 0;
 	shell->quote_pipe = 0;
 	shell->status = 0;
+	i = -1;
+	if (shell->flags)
+	{
+		while (shell->flags && shell->flags[++i])
+			free(shell->flags[i]);
+	}
+	free (shell->flags);
 }
 
 void	ft_free_shell(t_minishell *shell)
@@ -77,8 +86,8 @@ void	ft_prompt(char **envp)
 
 	signal(SIGQUIT, sigint_handler);
 	signal(SIGINT, sigint_handler);
-	ft_init(&shell, envp);
 	buf = readline("\033[0;36mMinishell $> \e[0m");
+	ft_init(&shell, envp);
 	while (buf != NULL)
 	{
 		if (*buf)
@@ -88,6 +97,7 @@ void	ft_prompt(char **envp)
 		free(buf);
 		buf = readline("\033[0;36mMinishell $> \e[0m");
 	}
+	ft_free_shell(shell);
 }
 
 int	main(int argc, char **argv, char **envp)
