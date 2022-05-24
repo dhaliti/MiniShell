@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:03:00 by jperras           #+#    #+#             */
-/*   Updated: 2022/05/23 21:01:54 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/24 10:17:03 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_prompt(char **envp)
 	char		*buf;
 	t_minishell	*shell;
 
-	signal(SIGKILL, sigint_handler);
+	signal(SIGQUIT, sigint_handler);
 	signal(SIGINT, sigint_handler);
 	ft_init(&shell, envp);
 	buf = readline("\033[0;36mMinishell $> \e[0m");
@@ -92,7 +92,6 @@ void	ft_prompt(char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	printf("main\n");
 	(void) argc;
 	(void) argv;
 	g_st = 0;

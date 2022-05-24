@@ -6,7 +6,7 @@
 /*   By: jperras <jperras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:05:34 by jperras           #+#    #+#             */
-/*   Updated: 2022/05/23 20:35:43 by dhaliti          ###   ########.fr       */
+/*   Updated: 2022/05/24 10:23:27 by dhaliti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ static void	ft_print_echo(char **args, int fd, int flag)
 	int	j;
 
 	i = -1;
+	if (ft_strcmp(args[0], "$?"))
+	{
+		printf("%d\n", g_st);
+		return;
+	}
 	while (args && args[++i])
 	{
 		j = -1;
