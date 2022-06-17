@@ -1,4 +1,8 @@
+<img src="https://user-images.githubusercontent.com/105823790/171860148-c0b11827-51de-42e1-8213-e1e83249b081.png" width="150" height="150">
+
 # Minishell42
+
+_made with [jeremy-perras](https://github.com/jeremy-perras)_
 
 Minishell is a 42 group project. The purpose is to learn how the shell works by recoding a "mini" version of bash. The programm must handle all basic features of a shell, such as pipe, fork, and user input management.
  
