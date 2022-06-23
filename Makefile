@@ -15,10 +15,10 @@ RED			= \033[0;31m
 RST			= \033[0m
 END			= \e[0m
 
-SRCS =  minishell.c cd.c echo.c \
-		exit.c pwd.c unset.c pipex.c signal.c execve.c env.c\
-		ft_parse.c ft_split2.c infile_outfile.c utils.c export.c cat.c redirect.c \
-		check_files.c ft_quote_pipe.c
+SRCS =  src/minishell.c src/cd.c src/echo.c \
+		src/exit.c src/pwd.c src/unset.c src/pipex.c src/signal.c src/execve.c src/env.c\
+		src/ft_parse.c src/ft_split2.c src/infile_outfile.c src/utils.c src/export.c src/cat.c src/redirect.c \
+		src/check_files.c src/ft_quote_pipe.c
 NAME		= minishell
 OBJS_DIR	= objs/
 OBJS		= $(SRCS:.c=.o)

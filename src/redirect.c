@@ -20,6 +20,8 @@ static char	**ft_heredoc(char **input, t_minishell *shell)
 	char	*heredoc;
 	int		fd;
 
+	if (!input[1])
+		return (input);
 	limiter = input[1];
 	fd = open(".heredoc", O_WRONLY | O_TRUNC | O_CREAT, 0664);
 	if (!fd)
