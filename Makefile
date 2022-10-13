@@ -1,56 +1,63 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jperras <jperras@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/04/08 13:14:04 by jperras           #+#    #+#              #
-#    Updated: 2022/05/22 22:01:48 by dhaliti          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-BLU			= \033[0;34m
-GRN			= \033[0;32m
-RED			= \033[0;31m
-RST			= \033[0m
-END			= \e[0m
+# # **************************************************************************** #
+# #                                                                              #
+# #                                                         :::      ::::::::    #
+# #    Makefile                                           :+:      :+:    :+:    #
+# #                                                     +:+ +:+         +:+      #
+# #    By: eardingh <eardingh@student.42.fr>          +#+  +:+       +#+         #
+# #                                                 +#+#+#+#+#+   +#+            #
+# #    Created: 2022/04/08 13:14:04 by jperras           #+#    #+#              #
+# #    Updated: 2022/10/13 11:57:32 by eardingh         ###   ########.fr        #
+# #                                                                              #
+# # **************************************************************************** #
 
-SRCS =  src/minishell.c src/cd.c src/echo.c \
+NAME = minishell
+
+LIBFT = libft/libft.a
+LIBFT_PATH = libft/
+READLINE = readline/libreadline.a
+
+
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -g
+RM = rm -f
+RLFLAGS = -lreadline -lncurses
+
+SRCS_FILES = src/minishell.c src/cd.c src/echo.c \
 		src/exit.c src/pwd.c src/unset.c src/pipex.c src/signal.c src/execve.c src/env.c\
 		src/ft_parse.c src/ft_split2.c src/infile_outfile.c src/utils.c src/export.c src/cat.c src/redirect.c \
 		src/check_files.c src/ft_quote_pipe.c
-NAME		= minishell
-OBJS_DIR	= objs/
-OBJS		= $(SRCS:.c=.o)
-OBJECTS_PREFIXED = $(addprefix $(OBJS_DIR), $(OBJS))
-CC			= gcc
-CC_FLAGS	= -Wall -Werror -Wextra
+SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
+OBJS = $(SRCS:.c=.o)
 
-$(OBJS_DIR)%.o : %.c
-	@mkdir -p $(OBJS_DIR)
-	@mkdir -p $(OBJS_DIR)srcs
-	@$(CC) $(CC_FLAGS) -c $< -o $@
-	@printf	"\033[2K\r${BLU}[BUILD]${RST} '$<' $(END)"
+all: 	$(NAME)
+	@echo "BOOM 💥💥💥💥💥 $(NAME) Compiled! 💯 $(DEFAULT)"
 
-$(NAME): $(OBJECTS_PREFIXED) maker
-	@$(CC) -o $(NAME) $(OBJECTS_PREFIXED) $(CC_FLAGS) ../libft/libft.a -lreadline -I .brew/opt/readline/include -fsanitize=address
-	@printf "\033[2K\r\033[0;32m[END]\033[0m $(NAME)$(END)\n"
 
-all: $(NAME)
-
-maker:
-	@make -C ../libft
+$(NAME): $(OBJS)
+	-@$(MAKE) -C $(LIBFT_PATH)
+	-@$(CC) $(CFLAGS) -o $@ $^ $(LIBFT) $(READLINE) $(RLFLAGS)
+	@echo "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 clean:
-	@make clean -C ../libft
-	@rm -rf $(OBJS_DIR)
-	@printf "\033[2K\r${GRN}[CLEAN]${RST} done$(END)"
+	@$(RM) $(OBJS)
+	@make -C $(LIBFT_PATH) clean
+	@echo "$(YELLOW)Object files deleted!$(DEFAULT)💯"
 
-fclean: clean
-	@make fclean -C ../libft
-	@rm -f $(NAME)
-	@printf "\033[2K\r${GRN}[FCLEAN]${RST} done$(END)"
+fclean:	clean
+	@$(RM) $(NAME) $(LIBFT)
 
-re: fclean all
+re:		fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:	all clean libft fclean re
+
+git:
+	@git add .
+	@git commit -m "$(COMMIT)"
+	@echo "\n$(GREEN)$(NAME) Committed!$(DEFAULT)💯"
+
+#COLORS
+RED = \033[1;31m
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
+DEFAULT = \033[0m
+COMMIT = $(shell date "+%d %B %T")
