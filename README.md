@@ -3,7 +3,7 @@
 
 _made with [jeremy-perras](https://github.com/jeremy-perras)_
 
-Minishell is a 42 group project. The purpose is to learn how the shell works by recoding a "mini" version of bash. The programm must handle all basic features of a shell, such as pipe, fork, and user input management.
+A tiny shell, just like a "mini" version of Bash. It handles all the basic features of a shell such as simple commands(ls, cd, env) as well as pipes, redirections and user input management.
  
 ![164968713-41994d8e-ecfb-4a35-98ad-49477166c0e2-399 (dragged)](https://user-images.githubusercontent.com/105823790/169653875-1775c38d-561b-4186-9faa-d13b12eec2a2.png)
 
