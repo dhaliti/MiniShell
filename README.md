@@ -1,6 +1,5 @@
-<img src="https://user-images.githubusercontent.com/105823790/171860148-c0b11827-51de-42e1-8213-e1e83249b081.png" width="150" height="150">
-
-# Minishell42
+# MiniShell
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
 
 _made with [jeremy-perras](https://github.com/jeremy-perras)_
 
@@ -31,4 +30,3 @@ echo 'export LIBRARY_PATH="/usr/local/opt/readline/lib:$LIBRARY_PATH"' >> ~/.zsh
 ```
 source ~/.zshrc
 ```
-[![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
