@@ -95,7 +95,7 @@ void	ft_prompt(char **envp)
 		ft_parse(buf, shell);
 		ft_free_shell(shell);
 		free(buf);
-		buf = readline("\033[0;36mMinishell $> \e[0m");
+		buf = readline("\033[0;36mMinishell ~ \e[0m");
 	}
 	ft_free_shell(shell);
 }
