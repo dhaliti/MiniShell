@@ -1,6 +1,7 @@
 # MiniShell
 
-MiniShell is a small and lightweight implementation of the popular Unix shell written in C. It features a number of built-in commands, including cd, env, and echo, as well as the ability to parse user input, execute external binaries, and handle pipes.
+MiniShell is a small and lightweight implementation of the popular Unix shell written in C. It features a number of built-in commands, including cd, env, and echo, as well as the ability to parse user input, execute external binaries, and handle pipes.<br>
+<img src="https://user-images.githubusercontent.com/105823790/210152103-db120388-ead4-48cd-86e2-bbab364be0b4.svg" width=500>
 
 ## Prerequisite
 
